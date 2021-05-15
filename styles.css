@@ -47,6 +47,9 @@ H6 {
 #day {
   display: inline;
 }
+#description {
+  text-transform: capitalize;
+}
 .current-city {
   position: relative;
   bottom: 35px;
