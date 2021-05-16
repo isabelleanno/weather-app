@@ -53,10 +53,11 @@ H6 {
 .current-city {
   position: relative;
   bottom: 35px;
-  left: 125px;
+  left: 127px;
   font-size: 30px;
 }
-.celsius {
+.degreeButton {
+  display: inline;
   font-size: 28px;
   border: 0px;
   background-color: transparent;
@@ -64,14 +65,7 @@ H6 {
   right: 12px;
   bottom: 1.5px;
 }
-.fahrenheit {
-  font-size: 28px;
-  border: 0px;
-  background-color: transparent;
-  position: relative;
-  right: 12px;
-  bottom: 1.5px;
-}
+
 .preciphumidity {
   position: relative;
   left: 150px;

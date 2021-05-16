@@ -25,7 +25,8 @@ let currentTime = document.querySelector("#time");
 currentTime.innerHTML = `<i class="far fa-clock"></i>  ${hour}:${minute}`;
 
 //showTemperature uses the API generated from the function cityAlert
-//to search for a city and display the temperature.
+//to search for a city and display all the info from the API, including temperature, humidity, feels like, description, and icons.
+//Basically, this funtion integrates the API into my code. Very important! :)
 
 function showTemperature(response) {
   let temperature = response.data.main.temp;
@@ -50,14 +51,14 @@ function showTemperature(response) {
   //I wanted to integrate font awesome icons instead of the weather api icons, so this is the section that does that.
 
   let weatherIcon = response.data.weather[0].icon;
-  console.log(weatherIcon);
   let currentWeather = response.data.weather[0].main;
-  console.log(currentWeather);
   let icon = document.querySelector("#icon");
-  if (currentWeather === "Clear") {
+  if (weatherIcon === "01d") {
     icon.innerHTML = ` <i class="fas fa-sun"></i>`;
   } else {
-    if (currentWeather === "Clouds") {
+    if (weatherIcon === "01n") {
+      icon.innerHTML = ` <i class="fas fa-moon"></i>`;
+    } else if (currentWeather === "Clouds") {
       icon.innerHTML = `<i class="fas fa-cloud"></i>`;
     } else {
       if (currentWeather === "Thunderstorm") {
@@ -69,10 +70,14 @@ function showTemperature(response) {
           if (currentWeather === "Snow") {
             icon.innerHTML = `<i class="far fa-snowflake"></i>`;
           } else {
-            if (weatherIcon === "02d" || "02n")
+            if (weatherIcon === "02d")
               icon.innerHTML = `<i class="fas fa-cloud-sun"></i>`;
             else {
-              icon.innerHTML = <i class="fas fa-smog"></i>;
+              if (weatherIcon === "02n")
+                icon.innerHTML = `<i class="fas fa-cloud-moon"></i>`;
+              else {
+                icon.innerHTML = `<i class="fas fa-smog"></i>`;
+              }
             }
           }
         }
