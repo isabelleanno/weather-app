@@ -86,29 +86,23 @@ function showTemperature(response) {
   }
 }
 
-//convert makes the innerHTML of the degree button go from F to C
+//convert makes the innerHTML of the degree button go from F to C, and therefore converts the units from fahrenheit to celsius and back
+// using the API url that it generated to be used in function showTemperature.
 function convert(event) {
   event.preventDefault();
-  let degreeButton = document.querySelector("#degreeButton");
-  if (degreeButton.innerHTML === "C") degreeButton.innerHTML = "F";
-  else if (degreeButton.innerHTML === "F") degreeButton.innerHTML = "C";
-}
-
-degreeButton.addEventListener("click", convert);
-console.log(degreeButton.innerHTML);
-
-//cityAlert displays the city you searched as well as generates an api key to send to the showTemperature function. If you type an invalid city name, it will alert you.
-function cityAlert(event) {
-  event.preventDefault();
   let place = document.querySelector("#place");
-  let currentCity = document.querySelector("#currentCity");
   let city = place.value;
-
-  let unit = "metric";
-  if (degreeButton.innerHTML === "F") unit = "imperial";
-  else unit === "metric";
+  let currentCity = document.querySelector("#currentCity");
   currentCity.innerHTML = city;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=dde5f5b53a9878edbb3c8ca7477531b0`;
+  let units = "";
+  if (degreeButton.innerHTML === "C") {
+    degreeButton.innerHTML = "F";
+    units = "imperial";
+  } else {
+    degreeButton.innerHTML = "C";
+    units = "metric";
+  }
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=dde5f5b53a9878edbb3c8ca7477531b0`;
   axios
     .get(apiUrl)
     .then(showTemperature)
@@ -116,8 +110,11 @@ function cityAlert(event) {
       alert("Please type a valid city");
     });
 }
+let degreeButton = document.querySelector("#degreeButton");
+degreeButton.addEventListener("click", convert);
+
 let form = document.querySelector("#cityName");
-form.addEventListener("submit", cityAlert);
+form.addEventListener("submit", convert);
 
 //hourChange converts 24 hour format to am/pm
 function hourChange(event) {
