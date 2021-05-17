@@ -104,8 +104,11 @@ function cityAlert(event) {
   let currentCity = document.querySelector("#currentCity");
   let city = place.value;
 
+  let unit = "metric";
+  if (degreeButton.innerHTML === "F") unit = "imperial";
+  else unit === "metric";
   currentCity.innerHTML = city;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=dde5f5b53a9878edbb3c8ca7477531b0`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=dde5f5b53a9878edbb3c8ca7477531b0`;
   axios
     .get(apiUrl)
     .then(showTemperature)
