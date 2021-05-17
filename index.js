@@ -37,7 +37,7 @@ function showTemperature(response) {
   let feelsLike = response.data.main.feels_like;
   feelsLike = Math.round(feelsLike);
   let feels = document.querySelector("#feelsLike");
-  feels.innerHTML = `Feels like: ${feelsLike}°C`;
+  feels.innerHTML = `Feels like: ${feelsLike}°`;
 
   let humidity = response.data.main.humidity;
   humidity = Math.round(humidity);
