@@ -85,18 +85,36 @@ function showTemperature(response) {
     }
   }
 }
+function convert(event) {
+  event.preventDefault;
+  degreeButton.innerHTML = "F";
+}
 
-//cityAlert displays the city you searched as well as generates an api key to send to the showTemperature function
+let degreeButton = document.querySelector("#degreeButton");
+degreeButton.addEventListener("click", convert);
+
+//cityAlert displays the city you searched as well as generates an api key to send to the showTemperature function. If you type an invalid city name, it will alert you.
 function cityAlert(event) {
   event.preventDefault();
   let place = document.querySelector("#place");
   let currentCity = document.querySelector("#currentCity");
   let city = place.value;
+  let unit = null;
+
+  console.log(degreeButton.innerHTML);
+  if (degreeButton.innerHTML === "F") unit = "imperial";
+  else {
+    unit = "metric";
+  }
 
   currentCity.innerHTML = city;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=dde5f5b53a9878edbb3c8ca7477531b0`;
-
-  axios.get(apiUrl).then(showTemperature);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=dde5f5b53a9878edbb3c8ca7477531b0`;
+  axios
+    .get(apiUrl)
+    .then(showTemperature)
+    .catch((error) => {
+      alert("Please type a valid city");
+    });
 }
 let form = document.querySelector("#cityName");
 form.addEventListener("submit", cityAlert);
