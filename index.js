@@ -48,6 +48,8 @@ function showTemperature(response) {
   let description = document.querySelector("#description");
   description.innerHTML = `${getDescription}`;
 
+  getForecast(response.data.coord);
+
   //I wanted to integrate font awesome icons instead of the weather api icons, so this is the section that does that.
 
   let weatherIcon = response.data.weather[0].icon;
@@ -88,13 +90,13 @@ function showTemperature(response) {
 
 //convert makes the innerHTML of the degree button go from F to C, and therefore converts the units from fahrenheit to celsius and back
 // using the API url that it generated to be used in function showTemperature.
+let units = "";
 function convert(event) {
   event.preventDefault();
   let place = document.querySelector("#place");
   let city = place.value;
   let currentCity = document.querySelector("#currentCity");
   currentCity.innerHTML = city;
-  let units = "";
   if (degreeButton.innerHTML === "C") {
     degreeButton.innerHTML = "F";
     units = "imperial";
@@ -102,6 +104,7 @@ function convert(event) {
     degreeButton.innerHTML = "C";
     units = "metric";
   }
+
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=dde5f5b53a9878edbb3c8ca7477531b0`;
   axios
     .get(apiUrl)
@@ -116,6 +119,14 @@ degreeButton.addEventListener("click", convert);
 let form = document.querySelector("#cityName");
 form.addEventListener("submit", convert);
 
+//getForecast integrates the forecast API into my website.
+function getForecast(coordinates) {
+  let lat = coordinates.lat;
+  let lon = coordinates.lon;
+  let apiKey = `95aeb6a7ef6c41601b52d671db1e4f20`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(forecast);
+}
 //hourChange converts 24 hour format to am/pm
 function hourChange(event) {
   if (time === 24) {
@@ -132,3 +143,32 @@ function hourChange(event) {
 let time = 24;
 let clock = document.querySelector("#time");
 clock.addEventListener("click", hourChange);
+
+//forecast displays the innerHTML of our forecast.
+function forecast(response) {
+  console.log(response.data.daily);
+  let future = document.querySelector("#future");
+  let days = ["Tues", "Wed", "Thurs", "Fri", "Sat"];
+  let weatherForecast = `<div class= "row">`;
+  days.forEach(function (day) {
+    weatherForecast =
+      weatherForecast +
+      `
+      <div class="col">
+      <div class ="card">
+        <div class="card-body">
+          <h6>${day}</h6>
+          <p class="future-temp">
+            <i class="fas fa-sun"></i> 24°C
+          </p>
+          <p>High:</p>
+          <p>Low:</p>
+          <p>Feels like:</p>
+        </div>
+      </div>
+    </div>
+  `;
+  });
+  weatherForecast = weatherForecast + `</div>`;
+  future.innerHTML = weatherForecast;
+}
