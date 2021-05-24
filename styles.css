@@ -29,7 +29,7 @@ H6 {
   border: 3px solid #7f3d1d;
   border-radius: 6px;
   width: 720px;
-  height: 400px;
+  height: 375px;
   position: fixed;
   left: 50%;
   top: 50%;
@@ -72,7 +72,7 @@ H6 {
   bottom: 96px;
 }
 .future {
-  margin: 1px 1px;
+  font-size: 12px;
 }
 .card {
   border: 1px solid #77825c;
