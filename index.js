@@ -103,6 +103,7 @@ function getForecast(coordinates) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(forecast);
 }
+//formatDay formats the timestamp given to us by the API.
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
