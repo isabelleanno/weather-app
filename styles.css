@@ -83,6 +83,14 @@ H6 {
   font-size: 15px;
   text-align: left;
 }
+.creator {
+  font-family: monospace;
+  font-size: 12px;
+  text-align: center;
+  position: fixed;
+  bottom: 200px;
+  left: 660px;
+}
 .future-temp {
   text-align: center;
   margin: 5px 5px;
