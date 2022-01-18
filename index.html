@@ -27,50 +27,56 @@
   <body>
     <img src="images/Background.jpg" alt="" />
     <div class="container">
-      <div class="outside-box">
-        <form id="cityName">
-          <input type="text" placeholder="Where do you live?" id="place" />
-          <input type="submit" value="Search" />
-        </form>
-        <div class="row">
-          <div class="datetime">
-            <div class="col 4">
-              <br />
-              <p id="day">Day:</p>
-              <div class="col" id="date">date:</div>
-              <div id="time">time:</div>
-            </div>
-          </div>
-          <div class="col 4">
-            <div class="current-city">
-              <h1 class="current-city" id="currentCity">
-                Current City
+      <div class="wrapper">
+        <div class="outside-box">
+          <form id="cityName">
+            <input type="text" placeholder="Where do you live?" id="place" />
+            <input type="submit" value="Search" />
+          </form>
+          <div class="row">
+            <div class="datetime">
+              <div class="col 4">
                 <br />
-              </h1>
-              <h1 class="current-city">
-                <span class="icon"></span>
-                <span id="currentTemp">00°</span>
-                <button class="degreeButton" id="degreeButton">C</button>
-              </h1>
+                <p id="day">Day:</p>
+                <div class="col" id="date">date:</div>
+                <div id="time">time:</div>
+              </div>
+            </div>
+            <div class="col 4">
+              <div class="current-city">
+                <h1 class="current-city" id="currentCity">
+                  Current City
+                  <br />
+                </h1>
+                <h1 class="current-city">
+                  <span class="icon"></span>
+                  <span id="currentTemp">00°</span>
+                  <button class="degreeButton" id="degreeButton">C</button>
+                </h1>
+              </div>
+            </div>
+            <div class="col 4">
+              <div class="preciphumidity">
+                <br />
+                <div id="description">description:</div>
+                <div id="humid">Humidity:</div>
+                <div id="feelsLike">Feels like:</div>
+              </div>
             </div>
           </div>
-          <div class="col 4">
-            <div class="preciphumidity">
-              <br />
-              <div id="description">description:</div>
-              <div id="humid">Humidity:</div>
-              <div id="feelsLike">Feels like:</div>
-            </div>
-          </div>
+          <br />
+          <div class="future" id="future"></div>
         </div>
-        <br />
-        <div class="future" id="future"></div>
-      </div>
-      <div class="creator">
-        Coded by: Isabelle Anno.
-        <a href="https://github.com/isabelleanno/weather-app" target="_blank"
-          >See my GitHub repository here:</a
-        >
+
+        <div class="creator">
+          Coded by:
+          <a href="https://hardcore-goldstine-953491.netlify.app/"
+            >Isabelle Anno.</a
+          >
+          <a href="https://github.com/isabelleanno/weather-app" target="_blank"
+            >Click here to see my Github repository.</a
+          >
+        </div>
       </div>
     </div>
   </body>
